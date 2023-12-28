@@ -5,7 +5,12 @@ const cors=require("cors");
 const bodyParser=require("body-parser");
 const cookieParser=require("cookie-parser");
 const productRoute = require("./routes/product.js")
-
+const categoryRoute=require("./routes/category.js")
+const userRoute=require("./routes/user.js")
+const commentRoute=require("./routes/comment.js")
+const orderRoute=require("./routes/order.js")
+const orderDetailRoute=require("./routes/orderDetail.js")
+const shopRoute= require('./routes/shop.js')
 dotenv.config();
 const app=express();
 const server=process.env.SERVER;
@@ -21,5 +26,13 @@ mongoose.connect(`${server}/${DB}`,{useNewUrlParser:true,useUnifiedTopology:true
 .catch((err)=>console.error("DB not connected",err))
 
 app.use('/products',productRoute)
+app.use('/categorys',categoryRoute)
+app.use('/users',userRoute)
+app.use('/comment',commentRoute)
+
+app.use('/order',orderRoute)
+app.use('/orderDetail',orderDetailRoute)
+app.use('/shop',shopRoute)
+
 
 app.listen(PORT,console.log(`server running on port ${PORT}`));

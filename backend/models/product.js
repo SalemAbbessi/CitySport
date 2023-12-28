@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
+const category = require("./category");
 const Schema = mongoose.Schema;
+
 
 const productSchema = new mongoose.Schema({
   name_product: {
@@ -24,7 +26,7 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type:String,
-    required:true,
+  
   },
   isactive:{
     type:Boolean,
@@ -37,6 +39,13 @@ const productSchema = new mongoose.Schema({
  updatedAT:{
     type: Date,  
     },
+    
+    category:{
+type:Schema.Types.ObjectId,
+ref:"Category"
+
+    }
+    
 
 });
 module.exports=mongoose.model('Product',productSchema);
