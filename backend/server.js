@@ -4,6 +4,7 @@ const dotenv=require("dotenv")
 const cors=require("cors");
 const bodyParser=require("body-parser");
 const cookieParser=require("cookie-parser");
+const authRoute=require('./routes/auth.js')
 const productRoute = require("./routes/product.js")
 const categoryRoute=require("./routes/category.js")
 const userRoute=require("./routes/user.js")
@@ -25,6 +26,7 @@ mongoose.connect(`${server}/${DB}`,{useNewUrlParser:true,useUnifiedTopology:true
 .then(()=>console.log("DB CONNECTED DONE"))
 .catch((err)=>console.error("DB not connected",err))
 
+app.use('/auth', authRoute)
 app.use('/products',productRoute)
 app.use('/categorys',categoryRoute)
 app.use('/users',userRoute)
